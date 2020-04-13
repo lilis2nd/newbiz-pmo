@@ -1,5 +1,5 @@
 import React from 'react';
-import { BrowserRouter as Router, Route, IndexRoute } from 'react-router-dom';
+import { BrowserRouter as Router, Route } from 'react-router-dom';
 import { Container, Row, Col } from 'reactstrap';
 import Header from './Header';
 import Home from './Home';
@@ -16,7 +16,8 @@ function App() {
         <Container className="mt-4">
           <Row>
             <Col>
-              <Route path="/" component={Home}>
+              <Route path="/">
+                <Home />
                 <Route path="/summary" component={Summary} />
                 <Route path="/pcode" component={ProjectCode} />
                 <Route path="/timelog" component={Timelog} />

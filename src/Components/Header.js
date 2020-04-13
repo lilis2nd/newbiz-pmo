@@ -1,15 +1,11 @@
 import React, { Component } from 'react';
-import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import {
   Navbar,
   NavbarBrand,
   Nav,
-  NavItem,
-  NavLink,
+  NavItem
 } from "reactstrap";
-import Summary from './Summary/Summary';
-import ProjectCode from './ProjectCode/ProjectCode';
-import Timelog from './Timelog/Timelog';
 
 class Header extends Component {
     render() {
