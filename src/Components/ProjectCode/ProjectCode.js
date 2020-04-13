@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Table, Col, Row, Button, Form, FormGroup, Label, Input, FormText } from 'reactstrap';
+// Reference site: https://forest71.tistory.com/187
 
 class ProjectCode extends Component {
 
@@ -31,6 +32,12 @@ class ProjectCode extends Component {
         });
     }
 
+    handleRemove = (codeNo) => {
+        this.setState({
+            codes: this.state.codes.filter(row => row.codeNo !== codeNo)
+        });
+    }
+
     render() {
 
         const { codes } = this.state;
@@ -38,7 +45,7 @@ class ProjectCode extends Component {
         return (
             <div>
                 <BoardForm onSaveData={this.handleSaveData} />
-                <Table bordered striped hover responsive size="sm" className="w-100 text-center">
+                <Table bordered striped hover responsive size="sm" className="w-100 text-center mt-4">
                     <thead>
                         <tr>
                             <th>No.</th>
@@ -47,12 +54,13 @@ class ProjectCode extends Component {
                             <th>Title</th>
                             <th>Period</th>
                             <th>PIC</th>
+                            <th>Del.</th>
                         </tr>
                     </thead>
                     <tbody>
                         {
                             codes.map(row =>
-                                (<CodeTable key={row.codeNo} row={row} />)
+                                (<CodeTable key={row.codeNo} row={row} OnRemove={this.handleRemove} onSelectRow={this.handleSelectRow} />)
                             )
                         }
                     </tbody>
@@ -63,6 +71,12 @@ class ProjectCode extends Component {
 }
 
 class CodeTable extends Component {
+
+    handleRemove = () => {
+        const { row, OnRemove } = this.props;
+        OnRemove(row.codeNo);
+    }
+
     render() {
         return (
             <tr>
@@ -72,6 +86,7 @@ class CodeTable extends Component {
                 <td>{this.props.row.codeTitle}</td>
                 <td>{this.props.row.codePeriod}</td>
                 <td>{this.props.row.codePIC}</td>
+                <td><Button color="danger p-0" size="sm" block onClick={this.handleRemove}>X</Button></td>
             </tr>
         );
     }
