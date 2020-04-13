@@ -1,0 +1,1 @@
+export default () => "회원관리";
